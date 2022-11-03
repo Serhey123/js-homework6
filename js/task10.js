@@ -1,11 +1,12 @@
 import users from "./users.js";
 
 const getSortedUniqueSkills = (arr) => {
-  return arr
-    .reduce(function (acc, user) {
-      acc.push(...user.skills);
-      return acc;
-    }, [])
+  const skills = [];
+  const userSkills = arr.forEach(function (user) {
+    skills.push(...user.skills);
+  });
+
+  const uniqueSkills = skills
     .reduce(function (acc, skill) {
       if (!acc.includes(skill)) {
         acc.push(skill);
@@ -13,6 +14,7 @@ const getSortedUniqueSkills = (arr) => {
       return acc;
     }, [])
     .sort();
+  return uniqueSkills;
 };
 
 console.log(getSortedUniqueSkills(users));
